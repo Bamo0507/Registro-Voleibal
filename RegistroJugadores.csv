@@ -1,0 +1,18 @@
+Tipo,Nombre,Pais,Errores,Aces,Cantidad de Servicios,Recibos Efectivos,Pases,Fintas,Ataques,Bloqueos Efectivos,Bloqueos Fallidos
+Libero,Messi,Argentina,4,5,6,8
+Libero,Tiago,Argentina,3,7,3,5
+Libero,Trueno,Argentina,9,6,5,7
+Libero,Milo,Argentina,2,10,10,10
+Libero,Miguel,M�xico,5,4,3,6
+Pasador,Quevedo,Espa�a,4,3,2, ,2,4
+Pasador,Duki,Argentina,5,10,4, ,2,1
+Pasador,Marco,Italia,2,3,4, ,5,6
+Pasador,Josef,Guatemala,8,7,6, ,5,4
+Pasador,Lula,Per�,6,3,7, ,9,1
+Auxiliar,Juan,Guatemala,4,2,6, , , ,2,3,8
+Auxiliar,Jose,Colombi,2,3,1, , , ,5,6,3
+Auxiliar,Alberto,Guatemala,2,3,1, , , ,3,2,4
+Auxiliar,Julio,Uruguay,5,4,6, , , ,7,2,1
+Opuesto,Myke,Guatemala,4,8,4, , , ,6,1,3
+Opuesto,Francisco,Colombia,5,3,2, , , ,5,1,6
+Opuesto,Jorge,Estados Unidos,1,2,4, , , ,7,3,8
