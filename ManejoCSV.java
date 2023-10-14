@@ -1,3 +1,11 @@
+//Bryan Alberto Martínez Orellana
+//Carnét 23542
+//Ingeniería en Ciencias de la Computación
+//Programación Orientada a Objetos
+//Creación: 13/10/2023
+//Última modificación: 13/10/2023
+
+//Librerís a utilizar
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -6,22 +14,26 @@ import java.io.*;
 import java.util.Scanner;
 
 public class ManejoCSV {
+    //Método para leer la información del CSV y obtener todos los jugadores que se tienen en un ArrayList de tipo Jugador
     public ArrayList<Jugador> leerCSV(String archivo) {
         ArrayList<Jugador> jugadores = new ArrayList<>();
-
+        //Se intenta leer el archivo
         try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
             br.readLine(); //Evitamos que trate de leer el encabezado
             String linea;
+            //Se leerá línea por línea hasta que esté vacío el documento
             while ((linea = br.readLine()) != null) {
+                //Se divide la fila en un Array de Strings
                 String[] datos = linea.split(",");
                 if (datos.length >= 6) {
+                    //Se recopila la información con su devido tipo en variables
                     String tipo = datos[0].trim();
                     String nombre = datos[1].trim();
                     String pais = datos[2].trim();
                     int errores = Integer.parseInt(datos[3].trim());
                     int aces = Integer.parseInt(datos[4].trim());
                     int cantidadServicios = Integer.parseInt(datos[5].trim());
-
+                    //Dependiendo del tipo se genera el objeto correspondiente
                     if (tipo.equals("Libero")) {
                         int recibosEfectivos = Integer.parseInt(datos[6].trim());
                         jugadores.add(new Libero(tipo, nombre, pais, errores, aces, cantidadServicios, recibosEfectivos));
@@ -41,16 +53,18 @@ public class ManejoCSV {
                     }
                 }
             }
-        } catch (IOException e) {
+        } catch (IOException e) { //Mensaje a mostrar si no se logra cargar el CSV
             System.err.println("No se encontró el archivo que proporcionaste :(");
         }
         return jugadores;
     }
 
+    //Método para agregar un nuevo jugador al CSV
     public void agregarJugador(String archivo){
         Scanner sc = new Scanner(System.in);
         int selecciontipo = 0;
         String tipo = "";
+        //Ciclo para asegurarse que se tenga un tipo válido
         while(!(selecciontipo >= 1 && selecciontipo <= 4)){
             System.out.println(tipoJugador());
             selecciontipo = obtenerEnteroValido(sc);
@@ -72,6 +86,7 @@ public class ManejoCSV {
                     break;
             }
         }
+        //Solicitamos todos los atributos comunes necesarios
         System.out.println("Ingrese el nombre del jugador: ");
         String nombre = sc.nextLine();
         System.out.println();
@@ -88,15 +103,17 @@ public class ManejoCSV {
         int cantServicios = obtenerEnteroValido(sc);
         System.out.println();
 
+        //Vamos construyendo lo que se colocará en la fila poco a poco, tomando en cuenta las delimitaciones por coma
         StringBuilder lineaCSV = new StringBuilder();
         lineaCSV.append(tipo).append(",").append(nombre).append(",").append(pais).append(",").append(errores).append(",").append(aces).append(",").append(cantServicios).append(",");
-
+        //Información a solicitar si e sun líbero
         if(tipo.equals("Libero")){
             System.out.println("Ingresar la cantidad de recibos efectivos: ");
             int recibosEfectivos = obtenerEnteroValido(sc);
             System.out.println();
             lineaCSV.append(recibosEfectivos);
-        } else if(tipo.equals("Pasador")){
+        }  //Información a solicitar si se trata de un pasador
+        else if(tipo.equals("Pasador")){
             System.out.println("¿Cuántos pases ha realizado");
             int pases = obtenerEnteroValido(sc);
             System.out.println();
@@ -104,7 +121,8 @@ public class ManejoCSV {
             int fintas = obtenerEnteroValido(sc);
             System.out.println();
             lineaCSV.append(" ").append(",").append(pases).append(",").append(fintas);
-        } else {
+        } //Información a solicitar si es un auxiliar u opuesto
+        else {
             System.out.println("¿Cuántos ataques ha realizado?");
             int ataques = obtenerEnteroValido(sc);
             System.out.println();
@@ -116,15 +134,16 @@ public class ManejoCSV {
             System.out.println();
             lineaCSV.append(" ").append(",").append(" ").append(",").append(" ").append(",").append(ataques).append(",").append(bloqueosEfectivos).append(",").append(bloqueosFallidos);
         }
+        //Tratamos de escribir sobre el archivo
         try(BufferedWriter w = new BufferedWriter(new FileWriter(archivo, true))){
             w.write(lineaCSV.toString());
             w.newLine();
-        } catch(IOException e) {
+        } catch(IOException e) { //Mensaje a mostrar si no logramos escribir sobre el CSV
             System.out.println("No se ha logrado agregar el jugador.");
             e.printStackTrace();
         }
     }
-
+    //Método para el menú de selección del tipo de jugador
     public String tipoJugador(){
         return "1. Libero\n" + "2. Pasador\n" + "3. Auxiliar\n" + "4. Opuesto";
     }
