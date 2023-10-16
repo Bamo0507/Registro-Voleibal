@@ -10,7 +10,6 @@ public class Opuesto extends Jugador {
     private int cantAtaques;
     private int bloqueosEfectivos;
     private int bloqueosFallidos;
-    private float efectividad;
     //Constructor del Opuesto tomando en cuenta el constructor de la superclase
     public Opuesto(String tipoJugador, String nombre, String pais, int errores, int aces, int cantServicios,
             int cantAtaques, int bloqueosEfectivos, int bloqueosFallidos) {
@@ -19,15 +18,5 @@ public class Opuesto extends Jugador {
         this.bloqueosFallidos = bloqueosFallidos;
         this.bloqueosEfectivos = bloqueosEfectivos;
         this.efectividad = ((cantAtaques+bloqueosEfectivos-bloqueosFallidos-errores)*100/(cantAtaques+bloqueosEfectivos+bloqueosFallidos+errores)) + (aces*100)/cantServicios;
-    }
-    //Devuelve información del jugador como un String
-    @Override
-    public String toString() {
-        return "-----" + nombre + " es un " + tipoJugador + " de " + pais + " y tiene una efectividad del " + efectividad + "%-----";
-    }
-    //Devuleve la efectividad del jugador
-    @Override
-    public float getEfectividad() {
-        return efectividad;
     }
 }

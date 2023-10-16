@@ -29,5 +29,9 @@ public abstract class Jugador{
         return this.efectividad;
     }
     
+    //Devolución de mensaje con información del jugador
+    public String toString() {
+        return "-----" + nombre + " es un " + tipoJugador + " de " + pais + " y tiene una efectividad del " + efectividad + "%-----";
+    }   
 
 }

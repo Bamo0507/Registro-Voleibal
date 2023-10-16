@@ -8,7 +8,6 @@
 public class Libero extends Jugador{
     //Atributos únicos de un líbero
     private int recibosEfectivos;
-    private float efectividad;
     //Constructor de un líbero tomando en cuenta la superclase
     public Libero(String tipoJugador, String nombre, String pais, int errores, int aces, int cantServicios,
             int recibosEfectivos) {
@@ -17,17 +16,5 @@ public class Libero extends Jugador{
         //Método específico para calcular su efectividad
         this.efectividad = ((recibosEfectivos - errores)*100/(recibosEfectivos + errores)) +((aces * 100)/cantServicios); 
     }    
-    //Devuelve información del jugador como un String
-    @Override
-    public String toString() {
-        return "-----" + nombre + " es un " + tipoJugador + " de " + pais + " y tiene una efectividad del " + efectividad + "%-----";
-    }
-    //Devuleve la efectividad del jugador
-    @Override
-    public float getEfectividad() {
-        return efectividad;
-    }
-
-    
     
 }
